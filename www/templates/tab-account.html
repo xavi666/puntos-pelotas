@@ -1,0 +1,27 @@
+<ion-view view-title="Configuración">
+  <ion-header-bar>
+    <h1 class="title">Configuración</h1>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="updateUser()">
+      <ion-list>
+        <div class="item item-input-inset">
+          <label class="item-input-wrapper">
+            <input type="text" ng-model="userData.name" placeholder="Nombre" ng-value="{{userData.name}}">
+          </label>
+        </div>
+        <div class="item item-input-inset">
+          <label class="item-input-wrapper">
+            <input type="text" ng-model="userData.email" placeholder="Email" ng-value="{{userData.email}}">
+          </label>
+        </div>
+        <ion-toggle ng-model="userData.push_comunio" ng-checked="{{userData.push_comunio}}">
+            Notificación Comunio
+        </ion-toggle>
+      </ion-list>
+      <label class="item">
+        <button class="button button-block button-positive" type="submit">Guardar</button>
+      </label>
+    </ion-content>
+  </form>
+</ion-view>
