@@ -1,6 +1,6 @@
 angular.module('starter.auth', [])
 
-.controller('AuthCtrl', function($scope, $ionicModal, $ionicPopup, $timeout, $state, $auth, $window, $http) {
+.controller('AuthCtrl', function($scope, $ionicModal, $ionicPopup, $timeout, $state, $auth, $window, $http, $ionicPush) {
   // Form data for the login modal
   $scope.loginData = {};
   $scope.registerData = {};
@@ -27,6 +27,16 @@ angular.module('starter.auth', [])
   $scope.doLogin = function() {
     $auth.submitLogin($scope.loginData)
       .then(function(resp) { 
+        $ionicPush.register({
+          canShowAlert: true, //Can pushes show an alert on your screen?
+          canSetBadge: true, //Can pushes update app icon badges?
+          canPlaySound: true, //Can notifications play a sound?
+          canRunActionsOnWake: true, //Can run actions outside the app,
+          onNotification: function(notification) {
+           // Handle new push notifications here
+           return true;
+          }
+        });
         $state.go('tab.points');
       })
       .catch(function(resp) { 
