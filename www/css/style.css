@@ -36,7 +36,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 60%;
+  width: 54%;
 }
 
 .points{
@@ -85,7 +85,7 @@
 /* Team */
 .team_name{
   float:left;
-  width: 80%;
+  width: 79%;
 }
 .score{
   border-bottom-left-radius: 2px;
