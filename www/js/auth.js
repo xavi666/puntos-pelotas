@@ -26,17 +26,22 @@ angular.module('starter.auth', [])
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     $auth.submitLogin($scope.loginData)
-      .then(function(resp) { 
-        $ionicPush.register({
-          canShowAlert: true, //Can pushes show an alert on your screen?
-          canSetBadge: true, //Can pushes update app icon badges?
-          canPlaySound: true, //Can notifications play a sound?
-          canRunActionsOnWake: true, //Can run actions outside the app,
-          onNotification: function(notification) {
-           // Handle new push notifications here
-           return true;
-          }
-        });
+      .then(function(user) { 
+        console.log(user);
+        if(user.ionic_push_token == null){
+          $ionicPush.register({
+            canShowAlert: true, //Can pushes show an alert on your screen?
+            canSetBadge: true, //Can pushes update app icon badges?
+            canPlaySound: true, //Can notifications play a sound?
+            canRunActionsOnWake: true, //Can run actions outside the app,
+            onNotification: function(notification) {
+             // Handle new push notifications here
+             return true;
+            }
+          }).then(function(devToken) {
+            user.ionic_push_token = devToken;
+          });
+        }
         $state.go('tab.points');
       })
       .catch(function(resp) { 

@@ -57,15 +57,27 @@
 .points_-2{
   color: #ED1C24;
 }
-.points_2{
+.points_0{
+  color: #9F9F9F;
+}
+.points_2,
+.points_3,
+.points_4,
+.points_6,
+.points_5,
+.points_7,
+.points_8{
   color: #ff9800;
 }
-.points_6,
-.points_9{
+
+.points_9,
+.points_10,
+.points_11{
   color: #21C130;
 }
-.points_10,
-.points_14{
+
+.points_14,
+.points_16{
   color: #66B4E8;
 }
 /* Players */

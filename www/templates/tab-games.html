@@ -1,5 +1,55 @@
 <ion-view view-title="Partidos">
+  <ion-header-bar>
+    <h1 class="title">Partido</h1>
+  </ion-header-bar>
   <ion-content>
-    Tabs
+    <div ng-repeat="game in games">
+      <div class="list card" ng-if="!game.comunio_points">
+        <div class="item item-divider">
+          <div class="row">
+            <div class="col col-50">
+              <div class="team_name">
+                {{game.local_team.name}} - {{game.comunio_points}}
+              </div>
+              <div class="score">
+                {{game.goals_local_team}}
+              </div>
+            </div>
+            <div class="col col-50">
+              <div class="team_name">
+                {{game.visitant_team.name}}
+              </div>
+              <div class="score">
+                {{game.goals_visitant_team}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-repeat="statistic in game.comunio_points_value.local">
+          <div class="col col-50">
+            <div class="position position_{{statistic.position}}" ng-if="statistic.position">
+              {{statistic.position}}
+            </div> 
+            <div class="name" ng-if="statistic.nombre">
+              {{statistic.nombre}}
+            </div>
+            <div class="points points_{{statistic.puntos}}" ng-if="statistic.puntos">
+              {{statistic.puntos}}
+            </div>
+          </div>
+          <div class="col col-50">
+            <div class="position position_{{statistic.position}}" ng-if="game.comunio_points_value.visitante[$index].position">
+              {{game.comunio_points_value.visitante[$index].position}}
+            </div> 
+            <div class="name" ng-if="game.comunio_points_value.visitante[$index].nombre">
+              {{game.comunio_points_value.visitante[$index].nombre}}
+            </div>
+            <div class="points points_{{game.comunio_points_value.visitante[$index].puntos}}" ng-if="game.comunio_points_value.visitante[$index].puntos">
+              {{game.comunio_points_value.visitante[$index].puntos}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
