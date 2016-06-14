@@ -27,7 +27,7 @@ angular.module('starter.auth', [])
   $scope.doLogin = function() {
     $auth.submitLogin($scope.loginData)
       .then(function(user) { 
-        if(user.ionic_push_token == null){
+        //if(user.ionic_push_token == null){
           $ionicPush.register({
             canShowAlert: true, //Can pushes show an alert on your screen?
             canSetBadge: true, //Can pushes update app icon badges?
@@ -39,8 +39,12 @@ angular.module('starter.auth', [])
             }
           }).then(function(devToken) {
             user.ionic_push_token = devToken;
+            console.log($scope.registerData);
+            $scope.userData = user
+            console.log($scope.userData);
+            $scope.updateUser();
           });
-        }
+        //}
         $state.go('tab.points');
       })
       .catch(function(resp) { 
@@ -65,6 +69,7 @@ angular.module('starter.auth', [])
   };
 
   $scope.updateUser = function() {
+    console.log('---> UPDATE USER');
     $auth.updateAccount($scope.userData)
       .then(function(resp) { 
         $scope.userData = resp.data.data;
