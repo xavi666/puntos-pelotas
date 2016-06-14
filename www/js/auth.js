@@ -27,8 +27,6 @@ angular.module('starter.auth', [])
   $scope.doLogin = function() {
     $auth.submitLogin($scope.loginData)
       .then(function(user) { 
-        console.log(user);
-        console.log(user.ionic_push_token);
         if(user.ionic_push_token == null){
           $ionicPush.register({
             canShowAlert: true, //Can pushes show an alert on your screen?
@@ -36,13 +34,12 @@ angular.module('starter.auth', [])
             canPlaySound: true, //Can notifications play a sound?
             canRunActionsOnWake: true, //Can run actions outside the app,
             onNotification: function(notification) {
-              // Handle new push notifications here
-              console.log('hello');
-              return true;
+             // Handle new push notifications here
+             return true;
             }
+          }).then(function(devToken) {
+            user.ionic_push_token = devToken;
           });
-          console.log(user.ionic_push_token);
-          console.log($ionicPush.devToken);
         }
         $state.go('tab.points');
       })

@@ -4,7 +4,7 @@
   </ion-header-bar>
   <ion-content>
     <div ng-repeat="game in games">
-      <div class="list card">
+      <div class="list card" ng-if="game.comunio_points">
         <div class="item item-divider">
           <div class="row">
             <div class="col col-50">
@@ -27,13 +27,13 @@
         </div>
         <div class="row" ng-repeat="statistic in game.comunio_points_value.local">
           <div class="col col-50">
-            <div class="position position_{{statistic.position}}">
+            <div class="position position_{{statistic.position}}" ng-if="statistic.position">
               {{statistic.position}}
             </div> 
-            <div class="name">
+            <div class="name" ng-if="statistic.nombre">
               {{statistic.nombre}}
             </div>
-            <div class="points points_{{statistic.puntos}}">
+            <div class="points points_{{statistic.puntos}}" ng-if="statistic.puntos">
               {{statistic.puntos}}
             </div>
           </div>
@@ -44,7 +44,7 @@
             <div class="name" ng-if="game.comunio_points_value.visitante[$index].nombre">
               {{game.comunio_points_value.visitante[$index].nombre}}
             </div>
-            <div class="points points_{{statistic.puntos}}" ng-if="game.comunio_points_value.visitante[$index].puntos">
+            <div class="points points_{{game.comunio_points_value.visitante[$index].puntos}}" ng-if="game.comunio_points_value.visitante[$index].puntos">
               {{game.comunio_points_value.visitante[$index].puntos}}
             </div>
           </div>
