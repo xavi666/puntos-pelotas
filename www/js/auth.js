@@ -27,7 +27,7 @@ angular.module('starter.auth', [])
   $scope.doLogin = function() {
     $auth.submitLogin($scope.loginData)
       .then(function(user) { 
-        //if(user.ionic_push_token == null){
+        if(user.ionic_push_token == null){
           $ionicPush.register({
             canShowAlert: true, //Can pushes show an alert on your screen?
             canSetBadge: true, //Can pushes update app icon badges?
@@ -39,12 +39,10 @@ angular.module('starter.auth', [])
             }
           }).then(function(devToken) {
             user.ionic_push_token = devToken;
-            console.log($scope.registerData);
             $scope.userData = user
-            console.log($scope.userData);
             $scope.updateUser();
           });
-        //}
+        }
         $state.go('tab.points');
       })
       .catch(function(resp) { 
@@ -69,7 +67,6 @@ angular.module('starter.auth', [])
   };
 
   $scope.updateUser = function() {
-    console.log('---> UPDATE USER');
     $auth.updateAccount($scope.userData)
       .then(function(resp) { 
         $scope.userData = resp.data.data;
@@ -83,17 +80,17 @@ angular.module('starter.auth', [])
   };
 
   $scope.logout = function() {
-    $ionicLoading.show({template:'Logging out....'});
-    $localstorage.set('loggin_state', '');
-
-    $timeout(function () {
-        $ionicLoading.hide();
-        $ionicHistory.clearCache();
-        $ionicHistory.clearHistory();
-        $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
-        $state.go('/register');
-        }, 30);
-    };
+    $auth.signOut()
+      .then(function(resp) { 
+        $window.location = '/';
+      })
+      .catch(function(resp) { 
+        var alertPopup = $ionicPopup.alert({
+            title: 'Salir!',
+            template: 'Error al salir de la aplicación!'
+        });
+      });
+  };
 });
 
 
