@@ -33,7 +33,7 @@
             <div class="name" ng-if="statistic.nombre">
               {{statistic.nombre}}
             </div>
-            <div class="points points_{{statistic.puntos}}" ng-if="statistic.puntos">
+            <div class="points points_{{statistic.puntos.replace('-', '_')}}" ng-if="statistic.puntos">
               {{statistic.puntos}}
             </div>
           </div>
@@ -44,7 +44,7 @@
             <div class="name" ng-if="game.comunio_points_value.visitante[$index].nombre">
               {{game.comunio_points_value.visitante[$index].nombre}}
             </div>
-            <div class="points points_{{game.comunio_points_value.visitante[$index].puntos}}" ng-if="game.comunio_points_value.visitante[$index].puntos">
+            <div class="points points_{{game.comunio_points_value.visitante[$index].puntos.replace('-', '_')}}" ng-if="game.comunio_points_value.visitante[$index].puntos">
               {{game.comunio_points_value.visitante[$index].puntos}}
             </div>
           </div>

@@ -54,12 +54,22 @@
   text-align: center;
   float: right;
 }
+<<<<<<< HEAD
 .points_-1,
 .points_-2,
 .points_-4,
 .points_-5,
 .points_-6,
 .points_-7{
+=======
+.points__1,
+.points__2,
+.points__3,
+.points__4,
+.points__5,
+.points__6,
+.points__7{  
+>>>>>>> origin/master
   color: #ED1C24;
 }
 .points_0{
@@ -79,12 +89,19 @@
 .points_9,
 .points_10,
 .points_11,
+<<<<<<< HEAD
 .points_14,
 .points_13,
+=======
+.points_12,
+.points_13,
+.points_14,
+>>>>>>> origin/master
 .points_15,
 .points_16{
   color: #21C130;
 }
+<<<<<<< HEAD
 .points_17,
 .points_18,
 .points_19,
@@ -114,6 +131,8 @@
 
 
 /*color: #66B4E8;*/
+=======
+>>>>>>> origin/master
 
 /* Players */
 

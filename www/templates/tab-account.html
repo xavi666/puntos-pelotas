@@ -3,30 +3,28 @@
     <h1 class="title">Configuración</h1>
   </ion-header-bar>
   <ion-content>
-    <form ng-submit="updateUser()">
+    <form>
       <ion-list>
         <div class="item item-input-inset">
           <label class="item-input-wrapper">
-            <input type="text" ng-model="userData.name" placeholder="Nombre" ng-value="{{userData.name}}">
+            <input type="text" ng-model="userData.name" placeholder="Nombre" ng-value="{{AuthCtrl.userData.name}}">
           </label>
         </div>
         <div class="item item-input-inset">
           <label class="item-input-wrapper">
-            <input type="text" ng-model="userData.email" placeholder="Email" ng-value="{{userData.email}}">
+            <input type="text" ng-model="userData.email" placeholder="Email" ng-value="{{AuthCtrl.userData.email}}">
           </label>
         </div>
-        <ion-toggle ng-model="userData.push_comunio" ng-checked="{{userData.push_comunio}}">
+        <ion-toggle ng-model="userData.push_comunio" ng-checked="{{AuthCtrl.userData.push_comunio}}">
           Notificación Comunio
         </ion-toggle>
-        <div class="item item-input-inset">
-          <label class="item-input-wrapper">
-            <input type="text" ng-model="userData.ionic_push_token" placeholder="Push Ionic Token" ng-value="{{userData.ionic_push_token}}">
-          </label>
-        </div>
       </ion-list>
       <label class="item">
-        <button class="button button-block button-positive" type="submit">Guardar</button>
+        <button ng-controller="AuthCtrl" ng-click="updateUser()" class="button button-block button-positive" type="submit">Guardar</button>
       </label>
     </ion-content>
   </form>
+  <label class="item">
+    <button ng-controller="AuthCtrl" ng-click="logout()" class="button button-block button-assertive" type="submit">Salir</button>
+  </label>
 </ion-view>

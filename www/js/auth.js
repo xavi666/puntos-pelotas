@@ -27,7 +27,6 @@ angular.module('starter.auth', [])
   $scope.doLogin = function() {
     $auth.submitLogin($scope.loginData)
       .then(function(user) { 
-        console.log(user);
         if(user.ionic_push_token == null){
           $ionicPush.register({
             canShowAlert: true, //Can pushes show an alert on your screen?
@@ -40,6 +39,8 @@ angular.module('starter.auth', [])
             }
           }).then(function(devToken) {
             user.ionic_push_token = devToken;
+            $scope.userData = user
+            $scope.updateUser();
           });
         }
         $state.go('tab.points');
@@ -79,17 +80,17 @@ angular.module('starter.auth', [])
   };
 
   $scope.logout = function() {
-    $ionicLoading.show({template:'Logging out....'});
-    $localstorage.set('loggin_state', '');
-
-    $timeout(function () {
-        $ionicLoading.hide();
-        $ionicHistory.clearCache();
-        $ionicHistory.clearHistory();
-        $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
-        $state.go('/register');
-        }, 30);
-    };
+    $auth.signOut()
+      .then(function(resp) { 
+        $window.location = '/';
+      })
+      .catch(function(resp) { 
+        var alertPopup = $ionicPopup.alert({
+            title: 'Salir!',
+            template: 'Error al salir de la aplicación!'
+        });
+      });
+  };
 });
 
 
